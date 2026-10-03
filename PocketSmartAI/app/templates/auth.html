@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{% if mode == 'register' %}Create account{% else %}Sign in{% endif %} — PocketSmart AI{% endblock %}
+{% block content %}
+<section class="auth-page"><div class="auth-side"><a class="auth-brand" href="/"><span class="brand-mark">P</span><span>PocketSmart<span class="brand-ai"> AI</span></span></a><div class="auth-message"><span class="eyebrow eyebrow-light">A CALMER WAY TO PLAN</span><h1>{% if mode == 'register' %}Your next good plan starts here.{% else %}Welcome back to your plans.{% endif %}</h1><p>Keep your budget, priorities, and saved ideas together in one thoughtful place.</p><div class="auth-decoration"><span class="auth-circle circle-a"></span><span class="auth-circle circle-b"></span><span class="auth-spark">✧</span><div class="auth-note"><span>YOUR POCKETSMART</span><b>More clarity.<br>Less guesswork.</b></div></div></div><div class="auth-side-foot">Plan thoughtfully. Spend confidently.</div></div>
+  <div class="auth-main"><div class="auth-form-wrap"><div class="mobile-auth-brand"><a class="brand" href="/"><span class="brand-mark">P</span><span>PocketSmart<span class="brand-ai"> AI</span></span></a></div><span class="eyebrow">{% if mode == 'register' %}GET STARTED{% else %}GOOD TO SEE YOU{% endif %}</span><h2>{% if mode == 'register' %}Create your account{% else %}Sign in to continue{% endif %}</h2><p class="form-intro">{% if mode == 'register' %}Save your plans and come back to them whenever you need.{% else %}Pick up right where you left off.{% endif %}</p>
+    <form class="form-stack" data-auth-form data-mode="{{ mode }}" novalidate>
+      {% if mode == 'register' %}<label class="field-label">Username<input name="username" type="text" minlength="3" maxlength="32" autocomplete="username" placeholder="Choose a username" required><span class="field-hint">Use 3–32 letters, numbers, dots, dashes, or underscores.</span></label>{% else %}<label class="field-label">Username<input name="username" type="text" autocomplete="username" placeholder="Your username" required></label>{% endif %}
+      {% if mode == 'register' %}<label class="field-label">Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>{% endif %}
+      <label class="field-label">Password<input name="password" type="password" minlength="8" autocomplete="{% if mode == 'register' %}new-password{% else %}current-password{% endif %}" placeholder="{% if mode == 'register' %}At least 8 characters{% else %}Your password{% endif %}" required></label>
+      {% if mode == 'register' %}<label class="check-label"><input name="terms" type="checkbox" required><span>I understand recommendations use estimates and retailer search links.</span></label>{% endif %}
+      <button class="button button-full" type="submit" data-submit-label>{% if mode == 'register' %}Create my account{% else %}Sign in{% endif %}<span aria-hidden="true">→</span></button>
+      <p class="form-error" data-form-error hidden></p>
+    </form>
+    <p class="auth-switch">{% if mode == 'register' %}Already have an account? <a href="/login">Sign in</a>{% else %}New to PocketSmart? <a href="/register">Create an account</a>{% endif %}</p>
+    <a class="back-link" href="/">← Back to explore</a>
+  </div></div>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ planner_label }} planner — PocketSmart AI{% endblock %}
+{% block content %}
+<section class="planner-page-head"><div class="wrap planner-head-inner"><a class="back-link" href="/dashboard">← Dashboard</a><span class="planner-head-icon {% if planner_type == 'home' %}icon-home{% elif planner_type == 'party' %}icon-party{% else %}icon-jewel{% endif %}">{% if planner_type == 'home' %}⌂{% elif planner_type == 'party' %}✦{% else %}◇{% endif %}</span><span class="eyebrow">YOUR {{ planner_label|upper }} PLAN</span><h1>{% if planner_type == 'home' %}Make a little more room at home.{% elif planner_type == 'party' %}Make the gathering feel easy.{% else %}Find a look that feels like you.{% endif %}</h1><p>{% if planner_type == 'home' %}Choose a budget, rooms, and the essentials you have in mind.{% elif planner_type == 'party' %}Set your event budget and guest count; we’ll help you divide the details.{% else %}Share your occasion and style. Add an outfit image for color and style cues if you like.{% endif %}</p></div></section>
+<section class="planner-layout wrap" data-planner-page data-planner="{{ planner_type }}">
+  <div class="planner-form-column"><form class="planner-form" data-planner-form>
+    <div class="form-section-heading"><span class="form-step">01</span><div><h2>Your budget</h2><p>Start with the amount you want to stay within.</p></div></div>
+    <label class="field-label">Total budget <span class="input-with-prefix"><span>₹</span><input name="budget" type="number" min="100" max="10000000" step="100" value="25000" required></span><span class="field-hint">Plans are made in Indian rupees.</span></label>
+    {% if planner_type == 'home' %}
+      <div class="form-section-heading section-spaced"><span class="form-step">02</span><div><h2>Your space</h2><p>What rooms and essentials are you planning for?</p></div></div>
+      <div class="field-label"><span>Rooms and items</span><div class="room-list" data-room-list><div class="room-row" data-room-row><label class="subfield-label">Room<input name="room_name" type="text" placeholder="Living room" value="Living room" required></label><label class="subfield-label">Items<input name="room_items" type="text" placeholder="Floor lamp, side table x 2" value="Ceiling fan, floor lamp, side table" required></label><button class="room-remove" type="button" data-remove-room aria-label="Remove room" hidden>×</button></div></div><button class="room-add" type="button" data-add-room>+ Add another room</button><span class="field-hint">Separate items with commas. Add “x 2” for quantities. You can plan up to 8 rooms.</span></div>
+      <label class="field-label">Style direction <span class="optional-label">Optional</span><input name="style" type="text" maxlength="100" placeholder="Warm minimal, colorful, traditional…"></label>
+      <label class="field-label">City <span class="optional-label">Optional</span><input name="city" type="text" maxlength="100" placeholder="For more relevant retailer searches"></label>
+      <label class="field-label">Anything else to keep in mind? <span class="optional-label">Optional</span><textarea name="notes" rows="3" maxlength="1200" placeholder="Room sizes, needs, or must-haves"></textarea></label>
+    {% elif planner_type == 'party' %}
+      <div class="form-section-heading section-spaced"><span class="form-step">02</span><div><h2>Your gathering</h2><p>Give us a few details to shape the budget.</p></div></div>
+      <div class="field-row"><label class="field-label">Event type<input name="event_type" type="text" maxlength="80" placeholder="Birthday, wedding, team dinner…" required value="Birthday"></label><label class="field-label">Guest count<input name="guests" type="number" min="1" max="5000" step="1" value="20" required></label></div>
+      <label class="field-label">City <span class="optional-label">Optional</span><input name="city" type="text" maxlength="100" placeholder="Your city"></label>
+      <label class="field-label">Venue preference <span class="optional-label">Optional</span><input name="venue_preference" type="text" maxlength="100" placeholder="At home, restaurant, outdoors…"></label>
+      <label class="field-label">Dietary needs <span class="optional-label">Optional</span><input name="dietary_needs" type="text" maxlength="400" placeholder="Vegetarian, allergies, Jain…"></label>
+      <label class="field-label">Your priorities <span class="optional-label">Optional</span><textarea name="priorities" rows="3" maxlength="700" placeholder="What matters most for this gathering?"></textarea></label>
+    {% else %}
+      <div class="form-section-heading section-spaced"><span class="form-step">02</span><div><h2>Your occasion and style</h2><p>Tell us what you’re dressing for and what you like.</p></div></div>
+      <label class="field-label">Occasion<input name="occasion" type="text" maxlength="100" placeholder="Wedding guest, festive dinner…" value="Festive dinner" required></label>
+      <label class="field-label">Style preference<input name="style" type="text" maxlength="100" placeholder="Minimal, traditional, statement…" value="Modern traditional" required></label>
+      <label class="field-label">Outfit details <span class="optional-label">Optional</span><textarea name="outfit_description" rows="3" maxlength="800" placeholder="Colors, neckline, fabric, or other details"></textarea></label>
+      <label class="field-label">Outfit image <span class="optional-label">Optional · up to 5 MB</span><span class="upload-field"><span class="upload-icon">↑</span><span><b>Choose an image</b><small>JPG, PNG, or WebP. It is used for this request and not saved to your account.</small></span><input name="outfit_image" type="file" accept="image/jpeg,image/png,image/webp"></span></label>
+      <div class="image-preview" data-image-preview hidden><img alt="Outfit preview"><button type="button" class="text-button" data-remove-image>Remove image</button></div>
+    {% endif %}
+    <button class="button button-full planner-submit" type="submit" data-submit-label>Build my budget plan <span aria-hidden="true">→</span></button>
+    <p class="form-error" data-form-error hidden></p>
+    {% if planner_type == 'jewelry' %}<p class="privacy-note"><span>◎</span> If Gemini is enabled, the image is sent for this request only. It is not saved with your plan.</p>{% else %}<p class="privacy-note"><span>◎</span> Your saved plans are private to your account.</p>{% endif %}
+  </form></div>
+  <aside class="result-column"><div class="result-intro" data-result-intro><span class="result-orbit">✧</span><span class="eyebrow">YOUR PLAN WILL APPEAR HERE</span><h2>One clear next step at a time.</h2><p>Share a few details and your budget plan will show here, ready to explore.</p><div class="result-intro-steps"><span><b>01</b> Budget-aware</span><span><b>02</b> Tailored to you</span><span><b>03</b> Easy to compare</span></div></div><div data-result hidden></div></aside>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>{% block title %}PocketSmart AI{% endblock %}</title>
+  <meta name="description" content="Plan a budget for your home, party, or jewelry and get thoughtful recommendations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="/" aria-label="PocketSmart AI home">
+        <span class="brand-mark">P</span><span>PocketSmart<span class="brand-ai"> AI</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-menu-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav>
+        <a href="/" class="nav-link">Explore</a>
+        <a href="/testimonials" class="nav-link">Our approach</a>
+        {% if user %}
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/history" class="nav-link">History</a>
+          <button class="nav-link nav-button" type="button" data-logout>Sign out</button>
+          <span class="user-pill">{{ user.username }}</span>
+        {% else %}
+          <a href="/login" class="nav-link">Sign in</a>
+          <a href="/register" class="button button-small">Get started</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">{% block content %}{% endblock %}</main>
+  <footer class="site-footer">
+    <div class="footer-main wrap">
+      <div class="footer-brand"><a class="brand" href="/"><span class="brand-mark">P</span><span>PocketSmart<span class="brand-ai"> AI</span></span></a><p>Make room for what matters. Plan thoughtfully, spend confidently.</p></div>
+      <div class="footer-links"><span class="footer-heading">Explore</span><a href="/planner/home">Home planner</a><a href="/planner/party">Party planner</a><a href="/planner/jewelry">Jewelry planner</a></div>
+      <div class="footer-links"><span class="footer-heading">Your PocketSmart</span><a href="/dashboard">Dashboard</a><a href="/history">Saved plans</a><a href="/testimonials">Our approach</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 PocketSmart AI</span><span>Recommendations are planning estimates. Check current prices and availability with each provider.</span></div>
+  </footer>
+  <div class="toast" role="status" aria-live="polite" data-toast hidden></div>
+</body>
+</html>

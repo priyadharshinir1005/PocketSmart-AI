@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Your saved plans — PocketSmart AI{% endblock %}
+{% block content %}
+<section class="page-banner history-banner"><div class="wrap banner-inner"><div><span class="eyebrow eyebrow-light">YOUR IDEAS, KEPT CLOSE</span><h1>Your recommendation history.</h1><p>Return to a plan, revisit the details, and keep shaping what comes next.</p></div><div class="banner-symbol" aria-hidden="true">↺</div></div></section>
+<section class="wrap history-page-content"><div class="history-page-head"><div><span class="eyebrow">SAVED FOR YOU</span><h2>All your plans</h2></div><a class="button button-outline" href="/dashboard">Make a new plan <span>→</span></a></div><div class="history-grid history-grid-large" data-history-list><div class="loading-card"><span class="spinner"></span> Loading your plans</div></div><div data-history-detail hidden></div></section>
+{% endblock %}

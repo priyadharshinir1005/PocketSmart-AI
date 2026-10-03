@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}PocketSmart AI — Plan what matters{% endblock %}
+{% block content %}
+<section class="hero-section">
+  <div class="hero-content wrap">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="eyebrow-dot"></span> A little clarity for every big plan</span>
+      <h1>Spend with a plan.<br><span>Make room for more.</span></h1>
+      <p class="hero-lede">Thoughtful budget plans for your home, next celebration, and the moments worth dressing up for.</p>
+      <div class="hero-actions">
+        {% if user %}<a class="button" href="/dashboard">Open your dashboard <span aria-hidden="true">→</span></a>{% else %}<a class="button" href="/register">Make your first plan <span aria-hidden="true">→</span></a>{% endif %}
+        <a class="text-link" href="#planners">Explore planners <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-proof"><div class="proof-avatars"><span>H</span><span>P</span><span>J</span></div><p><strong>Three simple planners</strong><br>made for everyday decisions</p></div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
+      <div class="floating-card card-budget"><span class="mini-label">YOUR PLAN</span><div class="budget-visual"><span class="budget-ring">₹</span><div><b>₹ 25,000</b><small>budget in focus</small></div></div><div class="budget-line"><span></span><span></span><span></span></div><div class="visual-caption"><span>Home essentials</span><b>₹ 18,400</b></div><div class="visual-caption"><span>Room to adjust</span><b>₹ 6,600</b></div></div>
+      <div class="floating-chip chip-home"><span class="chip-icon">⌂</span> Home, made yours</div>
+      <div class="floating-chip chip-party"><span class="chip-icon">✦</span> Every guest included</div>
+      <div class="visual-spark spark-one">✧</div><div class="visual-spark spark-two">✦</div>
+    </div>
+  </div>
+  <div class="hero-bottom wrap"><span>Plan around your priorities</span><span class="hero-line"></span><span>See your budget at a glance</span><span class="hero-line"></span><span>Compare before you buy</span></div>
+</section>
+
+<section class="section wrap" id="planners">
+  <div class="section-heading"><div><span class="eyebrow">YOUR NEXT PLAN</span><h2>Good ideas, within reach.</h2></div><p>Choose a planner and turn a number into a clear next step.</p></div>
+  <div class="planner-grid">
+    <article class="planner-card planner-home"><div class="planner-art art-home"><span class="art-window"></span><span class="art-lamp"></span><span class="art-chair"></span><span class="art-plant">✿</span></div><div class="planner-card-body"><div class="card-topline"><span class="category-tag">HOME</span><span class="card-icon">⌂</span></div><h3>Make home feel like yours.</h3><p>Plan rooms, furniture, lighting, and decor around the budget you set.</p><a class="card-link" href="{% if user %}/planner/home{% else %}/login{% endif %}">Open home planner <span>→</span></a></div></article>
+    <article class="planner-card planner-party"><div class="planner-art art-party"><span class="party-sun"></span><span class="party-balloons">●<i>●</i>●</span><span class="party-cake">▰<b>✦</b></span><span class="party-confetti">✦ ✧ ·</span></div><div class="planner-card-body"><div class="card-topline"><span class="category-tag">CELEBRATE</span><span class="card-icon">✦</span></div><h3>Bring everyone together.</h3><p>Balance food, venue, decor, and fun for the guest list you have in mind.</p><a class="card-link" href="{% if user %}/planner/party{% else %}/login{% endif %}">Open party planner <span>→</span></a></div></article>
+    <article class="planner-card planner-jewelry"><div class="planner-art art-jewelry"><span class="jewel-halo"></span><span class="jewel-stone">◆</span><span class="jewel-chain">⌒</span><span class="jewel-shine">✧</span></div><div class="planner-card-body"><div class="card-topline"><span class="category-tag">JEWELRY</span><span class="card-icon">◇</span></div><h3>Find your finishing touch.</h3><p>Explore occasion-ready styles, with an optional outfit image for color cues.</p><a class="card-link" href="{% if user %}/planner/jewelry{% else %}/login{% endif %}">Open jewelry planner <span>→</span></a></div></article>
+  </div>
+</section>
+
+<section class="how-section"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">A CLEARER WAY TO CHOOSE</span><h2>From budget to next step.</h2></div><p>Keep the big picture in view while you compare the details.</p></div><div class="steps-grid"><article class="step-card"><span class="step-number">01</span><div class="step-icon">₹</div><h3>Set your budget</h3><p>Start with the amount that feels right for your plan.</p></article><article class="step-card"><span class="step-number">02</span><div class="step-icon">☷</div><h3>Share your priorities</h3><p>Tell us what you need, your style, and what matters most.</p></article><article class="step-card"><span class="step-number">03</span><div class="step-icon">↗</div><h3>Explore your options</h3><p>Review a budget-aware plan and compare retailer searches.</p></article></div></div></section>
+
+<section class="cta-section wrap"><div class="cta-card"><div class="cta-orb"></div><div class="cta-copy"><span class="eyebrow eyebrow-light">YOUR NEXT IDEA STARTS HERE</span><h2>A thoughtful plan feels good.</h2><p>Keep your priorities close and your budget in view.</p></div><div class="cta-action">{% if user %}<a class="button button-light" href="/dashboard">Go to dashboard <span>→</span></a>{% else %}<a class="button button-light" href="/register">Create a free account <span>→</span></a>{% endif %}</div></div></section>
+{% endblock %}
